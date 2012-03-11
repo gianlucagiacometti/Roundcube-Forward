@@ -1,2 +1,8 @@
 2012-03-11 Gianluca Giacometti <php@gianlucagiacometti.it>
-[RELEASE]: version 0.7.1
+        [RELEASE]: version 0.7.1
+
+2012-03-11 Gianluca Giacometti <php@gianlucagiacometti.it>
+        * forward.php: added value for modification date and lowercase post input names
+        * config.inc.php: fixed write query with modification date
+        * tested with RC 0.7.2
+        [RELEASE]: version 0.7.2

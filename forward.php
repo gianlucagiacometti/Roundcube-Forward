@@ -4,7 +4,7 @@
 
  +-----------------------------------------------------------------------+
  | PostfixAdmin Forward Plugin for RoundCube                             |
- | Version: 0.7.1                                                        |
+ | Version: 0.7.2                                                        |
  | Author: Gianluca Giacometti <php@gianlucagiacometti.it>               |
  | Copyright (C) 2012 Gianluca Giacometti                                |
  | License: GNU General Public License                                   |
@@ -144,7 +144,7 @@ class forward extends rcube_plugin {
 		$forwards = get_input_value('_forwardforwards', RCUBE_INPUT_POST);
 
 		if (is_string($forwards) && (strlen($forwards) > 0)) {
-			$emails = preg_split("/[\s,;]+/", trim($forwards));
+			$emails = preg_split("/[\s,;]+/", mb_lowercase(trim($forwards), 'UTF-8'));
 			$emails = get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST) ? array_diff(array_unique($emails), array($this->obj->username)) : array_unique($emails);
 			}
 		else if (!get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
@@ -193,6 +193,7 @@ class forward extends rcube_plugin {
 		$data = array();
 		$data['address'] = $this->obj->username;
 		$data['goto'] = $this->obj->get_forward_forwards();
+		$data['modified'] = date('Y-m-d H:i:s');
 
 		$ret = mail_forward_write ($data);
 		switch ($ret) {

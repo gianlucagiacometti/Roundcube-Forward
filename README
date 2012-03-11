@@ -50,8 +50,8 @@ $rcmail_config['forward_sql_dsn'] = value;
 $rcmail_config['forward_sql_write'] = query;
     the query depends upon your postfixadmin database structure
     placeholders %goto and %address must be kept unchanged
-    default query: 'UPDATE alias SET goto = %goto WHERE address = %address'
-    example query: 'UPDATE aliases SET forwardto = %goto WHERE address = %address'
+    default query: 'UPDATE alias SET goto = %goto, modified = %modified WHERE address = %address'
+    example query: 'UPDATE aliases SET forwardto = %goto, modified = %modified WHERE address = %address'
 
 $rcmail_config['forward_sql_read'] = query;
     the query depends upon your postfixadmin database structure

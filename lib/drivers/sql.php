@@ -4,7 +4,7 @@
 
  +-----------------------------------------------------------------------+
  | PostfixAdmin Forward Plugin for RoundCube                             |
- | Version: 0.7.1                                                        |
+ | Version: 0.7.2                                                        |
  | Author: Gianluca Giacometti <php@gianlucagiacometti.it>               |
  | Copyright (C) 2012 Gianluca Giacometti                                |
  | License: GNU General Public License                                   |
@@ -99,11 +99,13 @@ function mail_forward_write(array &$data) {
 
 	$search = array(
 			'%address',
-			'%goto'
+			'%goto',
+			'%modified'
 			);
 	$replace = array(
 			$db->quote($data['address']),
-			 $db->quote($data['goto'])
+			 $db->quote($data['goto']),
+			 $db->quote($data['modified'])
 			);
 	$query = str_replace($search, $replace, $rcmail->config->get('forward_sql_write'));
 
