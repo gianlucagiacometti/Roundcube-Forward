@@ -1,0 +1,73 @@
++------------------------------------------+
+| PostfixAdmin Forward Plugin for RoudCube |
++------------------------------------------+
+
+
+
+AUTHOR
+
+Gianluca Giacometti (php@gianlucagiacometti.it)
+
+
+
+VERSION
+
+0.7.1
+
+
+
+RELEASE DATE
+
+11-03-2012
+
+
+
+INSTALL
+
+Requirements :
+- jQuery UI.
+
+To install this plugin, copy all files into /plugin/forward folder and
+add it to the plugin array in config/main.inc.php :
+
+// List of active plugins (in plugins/ directory)
+$rcmail_config['plugins'] = array('forward');
+
+
+
+CONFIGURATION
+
+Edit the plugin configuration file 'config.inc.php' and choose the
+appropriate options:
+
+$rcmail_config['forward_driver'] = 'sql';
+    so far only sql is available
+
+$rcmail_config['forward_sql_dsn'] = value;
+    example value: 'pgsql://username:password@host/database'
+    example value: 'mysql://username:password@host/database'
+
+$rcmail_config['forward_sql_write'] = query;
+    the query depends upon your postfixadmin database structure
+    placeholders %goto and %address must be kept unchanged
+    default query: 'UPDATE alias SET goto = %goto WHERE address = %address'
+    example query: 'UPDATE aliases SET forwardto = %goto WHERE address = %address'
+
+$rcmail_config['forward_sql_read'] = query;
+    the query depends upon your postfixadmin database structure
+    placeholder %address must be kept unchanged
+    default query: 'SELECT * FROM alias WHERE address = %address'
+    example query: 'SELECT * FROM aliases WHERE address = %address'
+
+
+
+LICENCE
+
+Licensed under GNU GPL2 licence.
+
+
+
+NOTE
+
+The code is based on Vacation plugin (rc-vacation) by Boris HUISGEN et al. (https://github.com/bhuisgen/rc-vacation).
+Thank you Boris et al.
