@@ -155,7 +155,7 @@ class forward extends rcube_plugin {
 			if (!preg_match(EMAIL_VALIDATION_PATTERN, $email)) {
 				$this->rc->output->command('display_message', $this->gettext('forwardinvalidforwards') . ': ' . $email, 'error');
 				$this->obj->set_forward_forwards($forwards);
-				if (get_input_value('_foa	rwardkeepcopies', RCUBE_INPUT_POST)) {
+				if (get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
 					$this->obj->set_forward_keepcopies(TRUE);
 					}
 				else {
@@ -164,10 +164,10 @@ class forward extends rcube_plugin {
 				return FALSE;
 				}
 			}
-		$forwards = implode(",", $emails);
+		$forwards = empty($emails) ? "" : implode(",", $emails);
 
 		if (get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
-			$forwards .= "," . $this->obj->username;
+			$forwards .= empty($emails) ? $this->obj->username : "," . $this->obj->username;
 			$this->obj->set_forward_keepcopies(TRUE);
 			}
 		else {
