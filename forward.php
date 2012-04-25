@@ -144,7 +144,7 @@ class forward extends rcube_plugin {
 		$forwards = get_input_value('_forwardforwards', RCUBE_INPUT_POST);
 
 		if (is_string($forwards) && (strlen($forwards) > 0)) {
-			$emails = preg_split("/[\s,;]+/", mb_lowercase(trim($forwards), 'UTF-8'));
+			$emails = preg_split("/[\s,;]+/", mb_strtolower(trim($forwards), 'UTF-8'));
 			$emails = get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST) ? array_diff(array_unique($emails), array($this->obj->username)) : array_unique($emails);
 			}
 		else if (!get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
