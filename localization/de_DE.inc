@@ -3,8 +3,8 @@
 /* Author: Gianluca Giacometti */
 
 $labels = array();
-$labels['forward'] = 'Weiterleitungen';
-$labels['forwardforwards'] = 'Weiterleiten an (Addressen durch Kommata, Semikoli oder Umbrüche getrennt)';
+$labels['forward'] = 'Weiterleitung';
+$labels['forwardforwards'] = 'Weiterleiten an (Addressen durch Kommata,\n Semikoli oder Umbrüche getrennt)';
 $labels['forwardkeepcopies'] = 'Kopie der Original Nachricht behalten';
 
 $messages = array();
