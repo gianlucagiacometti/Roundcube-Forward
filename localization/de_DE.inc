@@ -4,8 +4,8 @@
 
 $labels = array();
 $labels['forward'] = 'Weiterleitung';
-$labels['forwardforwards'] = 'Weiterleiten an (Addressen durch Kommata,\n Semikoli oder Umbrüche getrennt)';
-$labels['forwardkeepcopies'] = 'Kopie der Original Nachricht behalten';
+$labels['forwardforwards'] = 'Weiterleitungs-Empfänger\n(Addressen durch Kommata,\nSemikoli oder Umbrüche getrennt)';
+$labels['forwardkeepcopies'] = 'Original Nachricht behalten';
 
 $messages = array();
 $messages['forwardinvalidforwards'] = 'E-Mail Addresse ist nicht gültig';
