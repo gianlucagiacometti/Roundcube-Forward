@@ -4,7 +4,7 @@
 
 $labels = array();
 $labels['forward'] = 'Weiterleitung';
-$labels['forwardforwards'] = 'Weiterleitungs-Empfänger\n(Addressen durch Kommata,\nSemikoli oder Umbrüche getrennt)';
+$labels['forwardforwards'] = 'Weiterleitungs-Empfänger\n(getrennt durch Kommata,\nSemikoli oder Umbrüche)';
 $labels['forwardkeepcopies'] = 'Original Nachricht behalten';
 
 $messages = array();
