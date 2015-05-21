@@ -36,7 +36,11 @@ function mail_forward_read(array &$data) {
 		else if (!is_array($dsn) && !preg_match('/\?new_link=true/', $dsn)) {
 			$dsn .= '?new_link=true';
 			}
-		$db = new rcube_mdb2($dsn, '', FALSE);
+		if (!class_exists('rcube_db')) {
+			$db = new rcube_mdb2($dsn, '', FALSE);
+		} else {
+			$db = rcube_db::factory($dsn, '', FALSE);
+		}
 		$db->set_debug((bool)$rcmail->config->get('sql_debug'));
 		$db->db_connect('w');
 		}
