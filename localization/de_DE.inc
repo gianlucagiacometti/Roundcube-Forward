@@ -1,6 +1,6 @@
 <?php
 
-/* Author: Gianluca Giacometti */
+/* Author: Jan B. Fiedler */
 
 $labels = array();
 $labels['forward'] = 'Weiterleitung';
