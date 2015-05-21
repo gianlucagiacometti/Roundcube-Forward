@@ -4,8 +4,11 @@
 
  +-----------------------------------------------------------------------+
  | PostfixAdmin Forward Plugin for RoundCube                             |
- | Version: 0.7.2                                                        |
+ | Version: 1.1.0                                                        |
  | Author: Gianluca Giacometti <php@gianlucagiacometti.it>               |
+ | Contributors:                                                         |
+ |               Sebastien Blaisot (https://github.com/sblaisot)         |
+ |               Jan B. Fiedler (https://github.com/zuloo)               |
  | Copyright (C) 2012 Gianluca Giacometti                                |
  | License: GNU General Public License                                   |
  +-----------------------------------------------------------------------+
@@ -36,11 +39,7 @@ function mail_forward_read(array &$data) {
 		else if (!is_array($dsn) && !preg_match('/\?new_link=true/', $dsn)) {
 			$dsn .= '?new_link=true';
 			}
-		if (!class_exists('rcube_db')) {
-			$db = new rcube_mdb2($dsn, '', FALSE);
-		} else {
-			$db = rcube_db::factory($dsn, '', FALSE);
-		}
+		$db = rcube_db::factory($dsn, '', FALSE);
 		$db->set_debug((bool)$rcmail->config->get('sql_debug'));
 		$db->db_connect('w');
 		}
@@ -89,7 +88,7 @@ function mail_forward_write(array &$data) {
 		else if (!is_array($dsn) && !preg_match('/\?new_link=true/', $dsn)) {
 			$dsn .= '?new_link=true';
 			}
-		$db = new rcube_mdb2($dsn, '', FALSE);
+		$db = rcube_db::factory($dsn, '', FALSE);
 		$db->set_debug((bool)$rcmail->config->get('sql_debug'));
 		$db->db_connect('w');
 		}
@@ -108,8 +107,8 @@ function mail_forward_write(array &$data) {
 			);
 	$replace = array(
 			$db->quote($data['address']),
-			 $db->quote($data['goto']),
-			 $db->quote($data['modified'])
+			$db->quote($data['goto']),
+			$db->quote($data['modified'])
 			);
 	$query = str_replace($search, $replace, $rcmail->config->get('forward_sql_write'));
 

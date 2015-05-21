@@ -10,15 +10,22 @@ Gianluca Giacometti (php@gianlucagiacometti.it)
 
 
 
+CONTRIBUTORS
+
+Sebastien Blaisot (https://github.com/sblaisot)
+Jan B. Fiedler (https://github.com/zuloo)
+
+
+
 VERSION
 
-0.7.2
+1.1.0
 
 
 
 RELEASE DATE
 
-11-03-2012
+21-05-2015
 
 
 
@@ -28,7 +35,7 @@ Requirements :
 - jQuery UI.
 
 To install this plugin, copy all files into /plugin/forward folder and
-add it to the plugin array in config/main.inc.php :
+add it to the plugin array in config/config.inc.php :
 
 // List of active plugins (in plugins/ directory)
 $rcmail_config['plugins'] = array('forward');

@@ -6,3 +6,12 @@
         * config.inc.php: fixed write query with modification date
         * tested with RC 0.7.2
         [RELEASE]: version 0.7.2
+
+2014-02-15 Jan B. Fiedler (https://github.com/zuloo)
+        * change compatibility for RC 0.9b
+        * add German language
+
+2015-05-21 Gianluca Giacometti <php@gianlucagiacometti.it>
+        * some bug fixes
+        * tested with RC 1.1.1
+        [RELEASE]: version 1.1.0

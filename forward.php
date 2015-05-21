@@ -4,8 +4,11 @@
 
  +-----------------------------------------------------------------------+
  | PostfixAdmin Forward Plugin for RoundCube                             |
- | Version: 0.7.2                                                        |
+ | Version: 1.1.0                                                        |
  | Author: Gianluca Giacometti <php@gianlucagiacometti.it>               |
+ | Contributors:                                                         |
+ |               Sebastien Blaisot (https://github.com/sblaisot)         |
+ |               Jan B. Fiedler (https://github.com/zuloo)               |
  | Copyright (C) 2012 Gianluca Giacometti                                |
  | License: GNU General Public License                                   |
  +-----------------------------------------------------------------------+
@@ -141,7 +144,7 @@ class forward extends rcube_plugin {
 
 	public function write_data() {
 
-		$forwards = get_input_value('_forwardforwards', RCUBE_INPUT_POST);
+		$forwards = trim(get_input_value('_forwardforwards', RCUBE_INPUT_POST));
 
 		if (is_string($forwards) && (strlen($forwards) > 0)) {
 			$emails = preg_split("/[\s,;]+/", mb_strtolower(trim($forwards), 'UTF-8'));
@@ -151,6 +154,7 @@ class forward extends rcube_plugin {
 			$this->rc->output->command('display_message', $this->gettext('forwardnovalidforwards'), 'error');
 			return FALSE;
 			}
+		if (!is_array($emails)) { $emails = array(); }
 		foreach ($emails as $email) {
 			if (!preg_match(EMAIL_VALIDATION_PATTERN, $email)) {
 				$this->rc->output->command('display_message', $this->gettext('forwardinvalidforwards') . ': ' . $email, 'error');

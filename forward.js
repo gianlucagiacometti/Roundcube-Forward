@@ -2,8 +2,11 @@
 
  +-----------------------------------------------------------------------+
  | PostfixAdmin Forward Plugin for RoundCube                             |
- | Version: 0.7.2                                                        |
+ | Version: 1.1.0                                                        |
  | Author: Gianluca Giacometti <php@gianlucagiacometti.it>               |
+ | Contributors:                                                         |
+ |               Sebastien Blaisot (https://github.com/sblaisot)         |
+ |               Jan B. Fiedler (https://github.com/zuloo)               |
  | Copyright (C) 2012 Gianluca Giacometti                                |
  | License: GNU General Public License                                   |
  +-----------------------------------------------------------------------+
