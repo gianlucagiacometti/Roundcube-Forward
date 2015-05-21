@@ -1,0 +1,35 @@
+{
+    "name": "gianlucagiacometti/forward",
+    "type": "roundcube-plugin",
+    "description": "Lets you manage Postfix Admin forwards",
+    "keywords": ["mail","forward","forwards","pfa","postfixadmin"],
+    "homepage": "https://github.com/gianlucagiacometti/roundcube-forward.git",
+    "license": "GPL-2.0",
+    "version": "1.1.0",
+    "authors": [
+        {
+            "name": "Gianluca Giacometti",
+            "email": "gianlucagiacometti@users.noreply.github.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Sebastien Blaisot",
+            "email": "sblaisot@users.noreply.github.com",
+            "role": "Contributor"
+        },
+        {
+            "name": "Jan B. Fiedler",
+            "email": "zuloo@users.noreply.github.com",
+            "role": "Contributor"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "roundcube/plugin-installer": ">=0.1.3"
+    }
+}
