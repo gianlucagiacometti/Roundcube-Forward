@@ -4,7 +4,7 @@
 
 $labels = array();
 $labels['forward'] = 'Forward';
-$labels['forwardforwards'] = 'Forward addresses (separated by commas, semicolons or new lines)';
+$labels['forwardforwards'] = 'Forward addresses (separated by commas, semicolons or new lines)\nIf autoreply is set a forward address\ncontaining \'autoreply\' will appear; please do not delete or modify it';
 $labels['forwardkeepcopies'] = 'Keep copies of original messages';
 
 $messages = array();
