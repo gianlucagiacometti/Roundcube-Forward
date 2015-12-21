@@ -66,6 +66,10 @@ $rcmail_config['forward_sql_read'] = query;
     default query: 'SELECT * FROM alias WHERE address = %address'
     example query: 'SELECT * FROM aliases WHERE address = %address'
 
+$rcmail_config['forward_vacation_domain'] = value;
+    just enter the same value as for $CONF['vacation_domain'] in
+    the Postfixadmin config file
+    example value: 'autoreply.change-this-to-your.domain.tld'
 
 
 LICENCE

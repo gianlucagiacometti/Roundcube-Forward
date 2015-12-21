@@ -128,8 +128,13 @@ class forward extends rcube_plugin {
 		if (in_array($this->obj->username, $forwards)) {
 			$this->obj->set_forward_keepcopies(TRUE);
 			}
+		
+		// Vacation autoreply is implemented with a special alias
+		// Don't show this alias to the user
+		$vacation_alias = str_replace('@', '#', $this->obj->username).
+			'@'.$this->rc->config->get('forward_vacation_domain'); 
 
-		$forwards = array_diff($forwards, array($this->obj->username));
+		$forwards = array_diff($forwards, array($this->obj->username, $vacation_alias));
 		if (!empty($forwards)) {
 			$data['goto'] = implode("\n", $forwards);
 			$this->obj->set_forward_forwards($data['goto']);
@@ -178,8 +183,6 @@ class forward extends rcube_plugin {
 			$this->obj->set_forward_keepcopies(FALSE);
 			}
 
-		$this->obj->set_forward_forwards($forwards);
-
 		$driver = $this->home . '/lib/drivers/' . $this->rc->config->get('forward_driver', 'sql').'.php';
 
 		if (!is_readable($driver)) {
@@ -189,6 +192,14 @@ class forward extends rcube_plugin {
 
 		require_once($driver);
 
+		// We need to know if the user has turned on vacation
+		// For this, we read the alias database and see if the vacation
+		// alias is in the alias list
+		if (!function_exists('mail_forward_read')) {
+			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_read not found in driver $driver"), true, false);
+			return $this->gettext('forwardinternalerror');
+			}
+
 		if (!function_exists('mail_forward_write')) {
 			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_write not found in driver $driver"), true, false);
 			return $this->gettext('forwardinternalerror');
@@ -196,10 +207,32 @@ class forward extends rcube_plugin {
 
 		$data = array();
 		$data['address'] = $this->obj->username;
-		$data['goto'] = $this->obj->get_forward_forwards();
-		$data['modified'] = date('Y-m-d H:i:s');
 
-		$ret = mail_forward_write ($data);
+		$ret = mail_forward_read($data);
+		
+		// if reading fails: skip writing and continue with error handler
+		if ($ret == PLUGIN_SUCCESS) {
+			$forwards_old = explode(",", $data['goto']);
+			$vacation_alias = str_replace('@', '#', $this->obj->username).
+				'@'.$this->rc->config->get('forward_vacation_domain'); 
+			if (in_array($vacation_alias, $forwards_old)) {
+				if ($forwards) {
+					$forwards .= "," . $vacation_alias;
+				} else {
+					$forwards = $vacation_alias;
+				}
+			}
+
+			$this->obj->set_forward_forwards($forwards);
+
+			$data = array();
+			$data['address'] = $this->obj->username;
+			$data['goto'] = $this->obj->get_forward_forwards();
+			$data['modified'] = date('Y-m-d H:i:s');
+	
+			$ret = mail_forward_write ($data);
+		}
+		
 		switch ($ret) {
 			case PLUGIN_ERROR_CONNECT:
 					$this->rc->output->command('display_message', $this->gettext('forwarddriverconnecterror'), 'error');

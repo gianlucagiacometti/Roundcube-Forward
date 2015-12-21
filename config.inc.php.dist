@@ -17,4 +17,9 @@ $rcmail_config['forward_sql_write'] = 'UPDATE alias SET goto = %goto, modified =
 // The SQL query used to select aliases.
 $rcmail_config['forward_sql_read'] = 'SELECT * FROM alias WHERE address = %address';
 
+// The value of $CONF['vacation_domain'] in the Postfixadmin config file
+// If you are using postfixadmin vacation and don't set the right domain here,
+// additional aliases will show up in the roundcube settings forward page
+$rcmail_config['forward_vacation_domain'] = 'autoreply.change-this-to-your.domain.tld';
+
 ?>
