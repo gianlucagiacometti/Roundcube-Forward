@@ -198,8 +198,9 @@ class forward extends rcube_plugin {
 		$data['address'] = $this->obj->username;
 		$data['goto'] = $this->obj->get_forward_forwards();
 		$data['modified'] = date('Y-m-d H:i:s');
-
-		$ret = mail_forward_write ($data);
+                $data['domain'] = substr(strrchr($data['address'], "@"), 1);
+                
+                $ret = mail_forward_write ($data);
 		switch ($ret) {
 			case PLUGIN_ERROR_CONNECT:
 					$this->rc->output->command('display_message', $this->gettext('forwarddriverconnecterror'), 'error');

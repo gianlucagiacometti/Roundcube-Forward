@@ -15,3 +15,7 @@
         * some bug fixes
         * tested with RC 1.1.1
         [RELEASE]: version 1.1.0
+
+2016-09-25 Ray Deng (https://github.com/iBL1nK/)
+        * Now creates row if no previous alias record exists
+        * Clarified instructions on config.inc.php.dist and user interface 
