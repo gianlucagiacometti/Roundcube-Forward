@@ -67,7 +67,7 @@ function mail_forward_read(array &$data) {
 	else {
 		$data['goto'] = array();
 		}
-
+        
 	return PLUGIN_SUCCESS;
 
 	}
@@ -99,16 +99,18 @@ function mail_forward_write(array &$data) {
 	if ($err = $db->is_error()) {
 		return PLUGIN_ERROR_CONNECT;
 		}
-
+                
 	$search = array(
 			'%address',
 			'%goto',
-			'%modified'
+			'%modified',
+                        '%domain'
 			);
 	$replace = array(
 			$db->quote($data['address']),
 			$db->quote($data['goto']),
-			$db->quote($data['modified'])
+			$db->quote($data['modified']),
+                        $db->quote($data['domain'])
 			);
 	$query = str_replace($search, $replace, $rcmail->config->get('forward_sql_write'));
 
