@@ -17,16 +17,15 @@ Jan B. Fiedler (https://github.com/zuloo)
 Ray Deng (https://github.com/iBL1nK/)
 
 
-
 VERSION
 
-1.1.1
+1.3.0
 
 
 
 RELEASE DATE
 
-25-09-2016
+14-06-2017
 
 
 
@@ -47,10 +46,11 @@ eg:
 // List of active plugins (in plugins/ directory)
 $rcmail_config['plugins'] = array('forward, PLUGIN2, PLUGIN3');
 
+
+
 CONFIGURATION
 
-Edit the plugin configuration file 'config.inc.php' and choose the
-appropriate options:
+Edit the plugin configuration file 'config.inc.php' and choose the appropriate options:
 
 $rcmail_config['forward_driver'] = 'sql';
     so far only sql is available
@@ -62,8 +62,9 @@ $rcmail_config['forward_sql_dsn'] = value;
 $rcmail_config['forward_sql_write'] = query;
     the query depends upon your postfixadmin database structure
     placeholders %goto and %address must be kept unchanged
-    default query: 'REPLACE INTO alias SET address = %address, goto = %goto, modified = %modified, domain = %domain, created = %modified, active = "1"'
-    example query: 'REPLACE INTO aliases SET address = %address, forwardto = %goto, modified = %modified, domain = %domain, created = %modified'
+    default query: 'UPDATE alias SET goto = %goto, modified = %modified WHERE address = %address'
+    example query: 'UPDATE alias SET forwardto = %goto, modified = %modified WHERE address = %address'
+    example query: 'UPDATE aliases SET forwardto = %goto, modified = %modified WHERE address = %address'
 
 $rcmail_config['forward_sql_read'] = query;
     the query depends upon your postfixadmin database structure

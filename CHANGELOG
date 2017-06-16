@@ -1,21 +1,29 @@
 2012-03-11 Gianluca Giacometti <php@gianlucagiacometti.it>
-        [RELEASE]: version 0.7.1
+	[RELEASE]: version 0.7.1
 
 2012-03-11 Gianluca Giacometti <php@gianlucagiacometti.it>
-        * forward.php: added value for modification date and lowercase post input names
-        * config.inc.php: fixed write query with modification date
-        * tested with RC 0.7.2
-        [RELEASE]: version 0.7.2
+	* forward.php: added value for modification date and lowercase post input names
+	* config.inc.php: fixed write query with modification date
+	* tested with RC 0.7.2
+	[RELEASE]: version 0.7.2
 
 2014-02-15 Jan B. Fiedler (https://github.com/zuloo)
-        * change compatibility for RC 0.9b
-        * add German language
+	* change compatibility for RC 0.9b
+	* add German language
 
 2015-05-21 Gianluca Giacometti <php@gianlucagiacometti.it>
-        * some bug fixes
-        * tested with RC 1.1.1
-        [RELEASE]: version 1.1.0
+	* some bug fixes
+	* tested with RC 1.1.1
+	[RELEASE]: version 1.1.0
 
 2016-09-25 Ray Deng (https://github.com/iBL1nK/)
-        * Now creates row if no previous alias record exists
-        * Clarified instructions on config.inc.php.dist and user interface 
+	* Now creates row if no previous alias record exists
+	* Clarified instructions on config.inc.php.dist and user interface
+	[RELEASE]: version 1.1.1
+
+2017-06-14 Gianluca Giacometti <php@gianlucagiacometti.it>
+	* restored original query
+	* get rid of all deprecated functions in /program/include/bc.php of version 1.2.5
+	* changed compatibility for RC 1.3
+	* tested with RC 1.3 RC1
+	[RELEASE]: version 1.3.0

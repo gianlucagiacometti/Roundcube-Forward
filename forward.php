@@ -64,7 +64,7 @@ class forward extends rcube_plugin {
 		$this->write_data();
 		$this->register_handler('plugin.body', array($this, 'forward_form'));
 		$this->rc->output->set_pagetitle($this->gettext('forward'));
-		rcmail_overwrite_action('plugin.forward');
+		rcmail::get_instance()->overwrite_action('plugin.forward');
 		$this->rc->output->send('plugin');
 		}
 
@@ -74,12 +74,12 @@ class forward extends rcube_plugin {
 
 		$field_id = 'forwardforwards';
 		$text_forwardforwards = new html_textarea(array('name' => '_forwardforwards', 'id' => $field_id, 'spellcheck' => 1, 'rows' => 6, 'cols' => 40));
-		$table->add('title', html::label($field_id, Q($this->gettext('forwardforwards'))));
+		$table->add('title', html::label($field_id, rcmail::Q($this->gettext('forwardforwards'))));
 		$table->add(null, $text_forwardforwards->show($this->obj->get_forward_forwards()));
 
 		$field_id = 'forwardkeepcopies';
 		$input_forwardkeepcopies = new html_checkbox(array('name' => '_forwardkeepcopies', 'id' => $field_id, 'value' => 1));
-		$table->add('title', html::label($field_id, Q($this->gettext('forwardkeepcopies'))));
+		$table->add('title', html::label($field_id, rcmail::Q($this->gettext('forwardkeepcopies'))));
 		$table->add(null, $input_forwardkeepcopies->show($this->obj->is_forward_keepcopies() === true || $this->obj->is_forward_keepcopies() == "1" || $this->obj->is_forward_keepcopies() == "t" || $this->obj->is_forward_keepcopies() == "y" || $this->obj->is_forward_keepcopies() == "yes" ? 1 : 0));
 
 		$out = html::div(array('class' => "box"), html::div(array('id' => "prefs-title", 'class' => 'boxtitle'), $this->gettext('forward')) . html::div(array('class' => "boxcontent"), $table->show() . html::p(null, $this->rc->output->button(array('command' => 'plugin.forward-save', 'type' => 'input', 'class' => 'button mainaction', 'label' => 'save')))));
@@ -144,13 +144,13 @@ class forward extends rcube_plugin {
 
 	public function write_data() {
 
-		$forwards = trim(get_input_value('_forwardforwards', RCUBE_INPUT_POST));
+		$forwards = trim(rcube_utils::get_input_value('_forwardforwards', rcube_utils::INPUT_POST));
 
 		if (is_string($forwards) && (strlen($forwards) > 0)) {
 			$emails = preg_split("/[\s,;]+/", mb_strtolower(trim($forwards), 'UTF-8'));
-			$emails = get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST) ? array_diff(array_unique($emails), array($this->obj->username)) : array_unique($emails);
+			$emails = rcube_utils::get_input_value('_forwardkeepcopies', rcube_utils::INPUT_POST) ? array_diff(array_unique($emails), array($this->obj->username)) : array_unique($emails);
 			}
-		else if (!get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
+		else if (!rcube_utils::get_input_value('_forwardkeepcopies', rcube_utils::INPUT_POST)) {
 			$this->rc->output->command('display_message', $this->gettext('forwardnovalidforwards'), 'error');
 			return FALSE;
 			}
@@ -159,7 +159,7 @@ class forward extends rcube_plugin {
 			if (!preg_match(EMAIL_VALIDATION_PATTERN, $email)) {
 				$this->rc->output->command('display_message', $this->gettext('forwardinvalidforwards') . ': ' . $email, 'error');
 				$this->obj->set_forward_forwards($forwards);
-				if (get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
+				if (rcube_utils::get_input_value('_forwardkeepcopies', rcube_utils::INPUT_POST)) {
 					$this->obj->set_forward_keepcopies(TRUE);
 					}
 				else {
@@ -170,7 +170,7 @@ class forward extends rcube_plugin {
 			}
 		$forwards = empty($emails) ? "" : implode(",", $emails);
 
-		if (get_input_value('_forwardkeepcopies', RCUBE_INPUT_POST)) {
+		if (rcube_utils::get_input_value('_forwardkeepcopies', rcube_utils::INPUT_POST)) {
 			$forwards .= empty($emails) ? $this->obj->username : "," . $this->obj->username;
 			$this->obj->set_forward_keepcopies(TRUE);
 			}
@@ -198,9 +198,8 @@ class forward extends rcube_plugin {
 		$data['address'] = $this->obj->username;
 		$data['goto'] = $this->obj->get_forward_forwards();
 		$data['modified'] = date('Y-m-d H:i:s');
-                $data['domain'] = substr(strrchr($data['address'], "@"), 1);
-                
-                $ret = mail_forward_write ($data);
+
+		$ret = mail_forward_write ($data);
 		switch ($ret) {
 			case PLUGIN_ERROR_CONNECT:
 					$this->rc->output->command('display_message', $this->gettext('forwarddriverconnecterror'), 'error');

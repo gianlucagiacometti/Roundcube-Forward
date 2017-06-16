@@ -12,7 +12,7 @@ $rcmail_config['forward_driver'] = 'sql';
 $rcmail_config['forward_sql_dsn'] = 'pgsql://username:password@host/database';
 
 // The SQL query used to update forwards.
-$rcmail_config['forward_sql_write'] = 'REPLACE INTO alias SET address = %address, goto = %goto, modified = %modified, domain = %domain, created = %modified, active = "1"';
+$rcmail_config['forward_sql_write'] = 'UPDATE alias SET goto = %goto, modified = %modified WHERE address = %address';
 
 // The SQL query used to select aliases.
 $rcmail_config['forward_sql_read'] = 'SELECT * FROM alias WHERE address = %address';
