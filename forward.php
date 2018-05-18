@@ -95,14 +95,14 @@ class forward extends rcube_plugin {
 		$driver = $this->home . '/lib/drivers/' . $this->rc->config->get('forward_driver', 'sql').'.php';
 
 		if (!is_readable($driver)) {
-			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: unable to open driver file $driver"), true, false);
+			rcube::raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: unable to open driver file $driver"), true, false);
 			return $this->gettext('forwardinternalerror');
 			}
 
 		require_once($driver);
 
 		if (!function_exists('mail_forward_read')) {
-			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_read not found in driver $driver"), true, false);
+			rcube::raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_read not found in driver $driver"), true, false);
 			return $this->gettext('forwardinternalerror');
 			}
 
@@ -183,14 +183,14 @@ class forward extends rcube_plugin {
 		$driver = $this->home . '/lib/drivers/' . $this->rc->config->get('forward_driver', 'sql').'.php';
 
 		if (!is_readable($driver)) {
-			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: unable to open driver file $driver"), true, false);
+			rcube::raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: unable to open driver file $driver"), true, false);
 			return $this->gettext('forwardinternalerror');
 			}
 
 		require_once($driver);
 
 		if (!function_exists('mail_forward_write')) {
-			raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_write not found in driver $driver"), true, false);
+			rcube::raise_error(array('code' => 600, 'type' => 'php', 'file' => __FILE__, 'message' => "forward plugin: function mail_forward_write not found in driver $driver"), true, false);
 			return $this->gettext('forwardinternalerror');
 			}
 
