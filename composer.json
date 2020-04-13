@@ -4,7 +4,7 @@
     "description": "Lets you manage Postfix Admin forwards",
     "keywords": ["mail","forward","forwards","pfa","postfixadmin"],
     "homepage": "https://github.com/gianlucagiacometti/roundcube-forward.git",
-    "license": "GPL-2.0",
+    "license": "GPL-2.0-or-later",
     "version": "1.3.0",
     "authors": [
         {
