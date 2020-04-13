@@ -2,6 +2,10 @@
 | PostfixAdmin Forward Plugin for RoudCube |
 +------------------------------------------+
 
+--- NOTE ---
+THIS PLUGIN DOES NOT WORK IN RC 1.4.x AND IT's DEVELOPMENT IS DICONTINUED
+all functionalities will be migrated into the new plugin roundcube-toolbox
+--- END NOTE ---
 
 
 AUTHOR
