@@ -21,28 +21,48 @@
 
 */
 
-if (window.rcmail) {
+window.rcmail && rcmail.addEventListener('init', function(evt) {
 
-	rcmail.addEventListener('init', function(evt) {
+	var input_forwards = rcube_find_object('_forwardforwards');
+	    input_keepcopies = rcube_find_object('_forwardkeepcopies')
+	    initial_forwards = input_forwards.value;
 
-		var tab = $('<span>').attr('id', 'settingstabpluginforward').addClass('tablink');
-
-		var button = $('<a>').attr('href', rcmail.env.comm_path + '&_action=plugin.forward').html(rcmail.gettext('forward', 'forward')).appendTo(tab);
-
-		button.bind('click', function(e) {
-			return rcmail.command('plugin.forward', this);
-			});
-
-		rcmail.add_element(tab, 'tabs');
-
-		rcmail.register_command('plugin.forward', function() {
-			rcmail.goto_url('plugin.forward')
-			}, true);
-
-		rcmail.register_command('plugin.forward-save', function() {
-			rcmail.gui_objects.forwardform.submit();
-			}, true);
-
-		})
+	// Disable forwardkeepcopies checkbox if forwardforwards textarea is empty
+	if (input_keepcopies) {
+		if (input_forwards && input_forwards.value == '') {
+			input_keepcopies.checked = true;
+			input_keepcopies.disabled = true;
+		} else {
+			input_keepcopies.disabled = false;
+		}
 
 	}
+
+	rcmail.register_command('plugin.forward', function() {
+		rcmail.goto_url('plugin.forward')
+	}, true);
+
+	rcmail.register_command('plugin.forward-save', function() {
+		var check_forwards = rcube_find_object('_forwardforwards');
+
+		if ((check_forwards.value == '')) {
+			input_keepcopies.checked = true;
+		}
+		rcmail.gui_objects.forwardform.submit();
+	}, true);
+
+	// Disable submit button
+	$(".button").prop("disabled",true);
+	$("#forwardforwards").on("keyup", function(){
+		if((input_forwards.value != "") || (initial_forwards != "")){
+	        	$(".button").prop("disabled",false);
+			$("#forwardkeepcopies").prop("disabled", false);
+    		}
+	});
+	$("#forwardkeepcopies").change( function(){
+		if((input_forwards.value != "")){
+	        	$(".button").prop("disabled",false);
+			$("#forwardkeepcopies").prop("disabled", false);
+    		}
+	});
+});

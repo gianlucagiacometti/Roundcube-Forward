@@ -3,18 +3,18 @@
 // PostfixAdmin Forward Plugin options
 // -----------------------------------
 // Set the driver. Default (and so far the only existing): "sql".
-$rcmail_config['forward_driver'] = 'sql';
+$config['forward_driver'] = 'sql';
 
 // SQL Driver options
 // ------------------
 // PEAR database DSN for performing the query.
 // Roundcube DB settings are used.
-$rcmail_config['forward_sql_dsn'] = 'pgsql://username:password@host/database';
+$config['forward_sql_dsn'] = 'mysql://username:password@host/database';
 
 // The SQL query used to update forwards.
-$rcmail_config['forward_sql_write'] = 'UPDATE alias SET goto = %goto, modified = %modified WHERE address = %address';
+$config['forward_sql_write'] = 'UPDATE alias SET goto = %goto, modified = %modified WHERE address = %address';
 
 // The SQL query used to select aliases.
-$rcmail_config['forward_sql_read'] = 'SELECT * FROM alias WHERE address = %address';
+$config['forward_sql_read'] = 'SELECT * FROM alias WHERE address = %address';
 
 ?>
