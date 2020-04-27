@@ -5,7 +5,7 @@
     "keywords": ["mail","forward","forwards","pfa","postfixadmin"],
     "homepage": "https://github.com/gianlucagiacometti/roundcube-forward.git",
     "license": "GPL-2.0-or-later",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "authors": [
         {
             "name": "Gianluca Giacometti",
@@ -25,6 +25,11 @@
         {
             "name": "Ray Deng",
             "email": "ibl1nk@users.noreply.github.com",
+            "role": "Contributor"
+	},
+        {
+            "name": "Sebastian L",
+            "email": "brknkfr@users.noreply.github.com",
             "role": "Contributor"
         }
     ],

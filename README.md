@@ -1,10 +1,5 @@
 # PostfixAdmin Forward Plugin for RoudCube
 
-***NOTE***<br />
-***THIS PLUGIN DOES NOT WORK IN RC 1.4.x AND ITS DEVELOPMENT IS DICONTINUED***<br />
-***all functionalities will be migrated into the new plugin [roundcube-toolbox](https://github.com/gianlucagiacometti/roundcube-toolbox)***<br />
-
-
 AUTHOR
 
 Gianluca Giacometti (php@gianlucagiacometti.it)
@@ -16,17 +11,18 @@ CONTRIBUTORS
 Sebastien Blaisot (https://github.com/sblaisot)
 Jan B. Fiedler (https://github.com/zuloo)
 Ray Deng (https://github.com/iBL1nK/)
+Sebastian L (https://github.com/brknkfr)
 
 
 VERSION
 
-1.3.0
+1.4.0
 
 
 
 RELEASE DATE
 
-14-06-2017
+27-04-2020
 
 
 
