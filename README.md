@@ -2,7 +2,7 @@
 
 ***NOTE***<br />
 ***THE DEVELOPMENT IS DICONTINUED!***<br />
-***all functionalities will be migrated into the new plugin [roundcube-toolbox](https://github.com/gianlucagiacometti/roundcube-toolbox)***<br />
+***all functionalities are now integrated into the new plugin [roundcube-toolbox](https://github.com/gianlucagiacometti/roundcube-toolbox)***<br />
 
 AUTHOR
 
