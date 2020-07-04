@@ -1,4 +1,4 @@
-# PostfixAdmin Forward Plugin for RoudCube
+# DEPRECATED
 
 ***NOTE***<br />
 ***THE DEVELOPMENT IS DICONTINUED!***<br />
